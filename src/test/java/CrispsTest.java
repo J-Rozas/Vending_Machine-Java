@@ -1,4 +1,3 @@
-import Products.Cola;
 import Products.Crisps;
 import org.junit.Before;
 import org.junit.Test;
