@@ -1,9 +1,14 @@
 import Coin.Coin;
+import Products.Cola;
 import Products.Product;
+import Coin.CoinType;
+import Products.Sweet;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,7 +27,62 @@ public class VendingMachineTest {
     }
 
     @Test
+    public void hasMoney() {
+        assertEquals(0, vendingMachine.getMoney());
+    }
+
+    @Test
     public void hasEmptyArrayListOfCoins() {
+        assertEquals(new ArrayList<Coin>(), vendingMachine.getCoins());
+    }
+
+    @Test
+    public void shouldBeAbleToAddNewProduct() {
+        Cola cola = new Cola(10);
+        vendingMachine.addProduct(cola);
+        assertEquals(
+                new ArrayList<Product>(Collections.singletonList(cola)),
+                vendingMachine.getProducts()
+        );
+    }
+
+    @Test
+    public void shouldBeAbleToAddCustomerCoins() {
+        Coin coin = new Coin(CoinType.ONEHUNDRED, true);
+        vendingMachine.addCoin(coin);
+        vendingMachine.addCoin(coin);
+        assertEquals(
+                new ArrayList<>(Arrays.asList(coin, coin)),
+                vendingMachine.getCoins()
+        );
+    }
+
+    @Test
+    public void canGetValueOfCustomerCoins() {
+        Coin coin = new Coin(CoinType.ONEHUNDRED, true);
+        vendingMachine.addCoin(coin);
+        vendingMachine.addCoin(coin);
+        assertEquals(200, vendingMachine.getValueCustomerCoins());
+    }
+
+    @Test
+    public void canGetProductByCode() throws Exception {
+        Cola cola = new Cola(10);
+        Sweet sweet = new Sweet(2);
+        vendingMachine.addProduct(cola);
+        vendingMachine.addProduct(sweet);
+        assertEquals(cola, vendingMachine.getProductByCode("COL"));
+    }
+
+    @Test
+    public void shouldBeAbleToSellProductIfEnoughMoneyCorrectCodeAndEnoughStock() throws Exception {
+        Cola cola = new Cola(10);
+        Coin coin = new Coin(CoinType.ONEHUNDRED, true);
+        vendingMachine.addCoin(coin);
+        vendingMachine.addProduct(cola);
+        vendingMachine.sellProduct("COL");
+        assertEquals(100, vendingMachine.getMoney());
+        assertEquals(9, cola.getStock());
         assertEquals(new ArrayList<Coin>(), vendingMachine.getCoins());
     }
 
