@@ -1,4 +1,4 @@
-package Coin;
+package Coins;
 
 public class Coin {
 

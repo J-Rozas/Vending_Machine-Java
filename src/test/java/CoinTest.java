@@ -1,5 +1,5 @@
-import Coin.Coin;
-import Coin.CoinType;
+import Coins.Coin;
+import Coins.CoinType;
 import org.junit.Before;
 import org.junit.Test;
 
