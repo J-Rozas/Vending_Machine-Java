@@ -110,4 +110,8 @@ public class VendingMachine {
             }
         }
     }
+
+    public void returnCoins() {
+        coins.clear();
+    }
 }
