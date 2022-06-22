@@ -85,4 +85,15 @@ public class VendingMachineTest {
         assertEquals(9, sweet.getStock());
         assertEquals(35, vendingMachine.getValueCustomerCoins());
     }
+
+    @Test
+    public void shouldBeAbleToReturnCoins() {
+        Coin coin = new Coin(CoinType.ONEHUNDRED, true);
+        vendingMachine.addCoin(coin);
+        vendingMachine.addCoin(coin);
+        vendingMachine.addCoin(coin);
+        assertEquals(300, vendingMachine.getValueCustomerCoins());
+        vendingMachine.returnCoins();
+        assertEquals(0, vendingMachine.getValueCustomerCoins());
+    }
 }
