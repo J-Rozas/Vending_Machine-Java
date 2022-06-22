@@ -1,5 +1,5 @@
-import Coin.Coin;
-import Products.Cola;
+import Coins.Coin;
+import Coins.CoinType;
 import Products.Product;
 
 import java.util.ArrayList;
@@ -57,6 +57,38 @@ public class VendingMachine {
         throw new Exception("Product not Found");
     }
 
+    public void giveChange(int changeToGive) {
+        coins.clear();
+
+        while (changeToGive > 0) {
+            if (changeToGive > 200) {
+                Coin coin = new Coin(CoinType.TWOHUNDRED, true);
+                addCoin(coin);
+                changeToGive -= coin.getCoinType().getValue();
+            } else if (changeToGive > 100) {
+                Coin coin = new Coin(CoinType.ONEHUNDRED, true);
+                addCoin(coin);
+                changeToGive -= coin.getCoinType().getValue();
+            } else if (changeToGive > 50) {
+                Coin coin = new Coin(CoinType.FIFTY, true);
+                addCoin(coin);
+                changeToGive -= coin.getCoinType().getValue();
+            } else if (changeToGive > 20) {
+                Coin coin = new Coin(CoinType.TWENTY, true);
+                addCoin(coin);
+                changeToGive -= coin.getCoinType().getValue();
+            } else if (changeToGive > 10) {
+                Coin coin = new Coin(CoinType.TEN, true);
+                addCoin(coin);
+                changeToGive -= coin.getCoinType().getValue();
+            } else {
+                Coin coin = new Coin(CoinType.FIVE, true);
+                addCoin(coin);
+                changeToGive -= coin.getCoinType().getValue();
+            }
+        }
+    }
+
     public void sellProduct(String code) throws Exception {
         Product desiredProduct = getProductByCode(code);
 
@@ -69,7 +101,7 @@ public class VendingMachine {
                if (customerMoney >= price) {
                    money += price;
                    desiredProduct.setStock(-1);
-                   coins.clear();
+                   giveChange(customerMoney - price);
                } else {
                    throw new Exception("Not enough Money");
                }
