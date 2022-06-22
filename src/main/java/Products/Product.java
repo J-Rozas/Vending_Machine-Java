@@ -5,7 +5,7 @@ public abstract class Product {
     private final String name;
     private final int price;
     private final String code;
-    private final int stock;
+    private int stock;
 
 
     public Product(String name, int price, String code, int stock) {
@@ -29,5 +29,9 @@ public abstract class Product {
 
     public int getStock() {
         return stock;
+    }
+
+    public void setStock(int modification) {
+        stock += modification;
     }
 }
