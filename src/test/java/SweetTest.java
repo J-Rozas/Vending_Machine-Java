@@ -14,22 +14,28 @@ public class SweetTest {
     }
 
     @Test
-    public void colaHasStock() {
+    public void hasStock() {
         assertEquals(3, sweet.getStock());
     }
 
     @Test
-    public void colaHasName() {
+    public void hasName() {
         assertEquals("Sweet", sweet.getName());
     }
 
     @Test
-    public void colaHasPrice() {
+    public void hasPrice() {
         assertEquals(65, sweet.getPrice());
     }
 
     @Test
-    public void colaHasCode() {
+    public void hasCode() {
         assertEquals("SWE", sweet.getCode());
+    }
+
+    @Test
+    public void shouldBeAbleToModifyStock() {
+        sweet.setStock(-1);
+        assertEquals(2, sweet.getStock());
     }
 }

@@ -14,22 +14,28 @@ public class CrispsTest {
     }
 
     @Test
-    public void colaHasStock() {
+    public void hasStock() {
         assertEquals(3, crisps.getStock());
     }
 
     @Test
-    public void colaHasName() {
+    public void hasName() {
         assertEquals("Crisps", crisps.getName());
     }
 
     @Test
-    public void colaHasPrice() {
+    public void hasPrice() {
         assertEquals(50, crisps.getPrice());
     }
 
     @Test
-    public void colaHasCode() {
+    public void hasCode() {
         assertEquals("CRI", crisps.getCode());
+    }
+
+    @Test
+    public void shouldBeAbleToModifyStock() {
+        crisps.setStock(-1);
+        assertEquals(2, crisps.getStock());
     }
 }

@@ -3,6 +3,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ColaTest {
 
@@ -31,5 +32,11 @@ public class ColaTest {
     @Test
     public void colaHasCode() {
         assertEquals("COL", cola.getCode());
+    }
+
+    @Test
+    public void shouldBeAbleToModifyStock() {
+        cola.setStock(-1);
+        assertEquals(9, cola.getStock());
     }
 }
