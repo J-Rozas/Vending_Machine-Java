@@ -1,7 +1,7 @@
-import Coin.Coin;
+import Coins.Coin;
 import Products.Cola;
 import Products.Product;
-import Coin.CoinType;
+import Coins.CoinType;
 import Products.Sweet;
 import org.junit.Before;
 import org.junit.Test;
@@ -76,14 +76,13 @@ public class VendingMachineTest {
 
     @Test
     public void shouldBeAbleToSellProductIfEnoughMoneyCorrectCodeAndEnoughStock() throws Exception {
-        Cola cola = new Cola(10);
+        Sweet sweet = new Sweet(10);
         Coin coin = new Coin(CoinType.ONEHUNDRED, true);
         vendingMachine.addCoin(coin);
-        vendingMachine.addProduct(cola);
-        vendingMachine.sellProduct("COL");
-        assertEquals(100, vendingMachine.getMoney());
-        assertEquals(9, cola.getStock());
-        assertEquals(new ArrayList<Coin>(), vendingMachine.getCoins());
+        vendingMachine.addProduct(sweet);
+        vendingMachine.sellProduct("SWE");
+        assertEquals(65, vendingMachine.getMoney());
+        assertEquals(9, sweet.getStock());
+        assertEquals(35, vendingMachine.getValueCustomerCoins());
     }
-
 }
